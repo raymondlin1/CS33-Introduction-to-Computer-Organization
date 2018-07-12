@@ -1,0 +1,43 @@
+Raymond Lin
+304937942
+
+Homework 1
+2.71
+A. 0xFF would be implicitly cast to a 32 bit value, because 'word' is 32 bits long. The program would try to return a 32 bit value.
+B.
+
+typedef unsigned packed_t;
+
+int xbyte(packed_t word, int bytenum)
+{
+	return (int)((word << ((3 - bytenum) << 3)) >> 24);
+}
+
+
+2.82
+A. Could yield 0. If x is Tmin, the first condition is true except when y is also Tmin. However, the second condition will be false, because -x is -Tmin which is just Tmin, and Tmin cannot be greater than anything.
+B. Always yields 1. 
+	((x+y) << 4) + y - x == 17*y + 15*x
+	=(16 + 1)*y + (16 - 1)*x
+	=(16*y + 1*y) + (16*x - 1*x)
+	=((y << 4) + y) + ((x << 4) - x)
+	=(y << 4) + y + (x << 4) -x
+	=((x + y) << 4) + y - x
+C. Always yields 1.
+	~x + ~y + 1 = ~(x + y)
+	Definition: ~x = -x - 1
+	=> (-x - 1) + (-y - 1) + 1 = -(x + y) - 1
+	=> -x - 1 - y - 1 + 1 = -x - y - 1
+	=> -x - y - 1 = -x - y - 1
+D. Always yields 1.
+	(ux - uy) == -(unsigned)(y - x)
+	= (unsigned)(-y + x)
+	= ((unsigned)(-y) + (unsigned)(x))
+	= (-uy + ux)
+	= (ux - uy)
+	Note: They are undergoing the same operations bitwise, but only the lens with which the values are viewed (signed vs unsigned) are different
+E. Always yields 1.
+	((x >> 2) << 2) <= x
+	=> ((x/4)*4) <= x
+	=> x <= x
+	Note: Taking into account rounding and bias, if x does not divide into 4 evenly, the result will be less than x. If x does divide evenly, the result will be equal to x. Additionally, the right shift operation always truncates the last two digits. Then, the left shift fills in the two least significant digits with 0, which is the least possible value in those two positions. Therefore, the result is always less than or equal to x.

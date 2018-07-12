@@ -1,0 +1,7 @@
+Raymond Lin
+304937942
+CS33
+
+Homework 4
+1. The value of i is: 7
+2. e

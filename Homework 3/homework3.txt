@@ -1,0 +1,33 @@
+Raymond Lin
+304937942
+CS33 - Reinman
+
+Homework 3
+
+void transpose(int *dst, int *src, int dim)
+{
+	int i, j, row, col, rowlim, rowdim, collim, coldim, blocksize;
+	blocksize = 8;
+	for(i = 0; i < dim; i+= blocksize)
+	{
+		for(j = 0 ; j < dim, j+= blocksize)
+		{
+			rowlim = blocksize + i;
+			rowdim = row*dim;
+			for(row = i; row < rowlim && col < dim; row++)
+			{
+				collim = blocksize + j;
+				coldim = col * dim;
+				for(col = j; col < collim && col < dim; col++)
+				{
+					dst[coldim + row] = src[rowdim + col];
+					coldim += dim;
+				}
+				rowdim += dim;
+			}
+		}		
+	}
+}
+
+-used cache-friendly code - break up 2D array into multiple smaller blocks
+-used strength reduction and code motion - changed multiplication operations into addition and placed them outside of the loop 
